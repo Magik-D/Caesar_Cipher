@@ -1,0 +1,78 @@
+alphabet_e = 'abcdefghijklmnoprqstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+alphabet_r = 'абвгдежзийклмнопрстуфхцчшщъыьэюяАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
+def destination():
+    n = input('Шифровать или дешировать, вот в чем вопрос! Чтобы зашифровать ваш текст введите на английской раскладке "e" или чтобы дешифровать ваш текст введите "d": ')
+    while n not in 'de':
+        print('А может напишите d или e?')
+        n = input('Шифровать или дешировать, вот в чем вопрос! Чтобы зашифровать ваш текст введите на английской раскладке "e" или чтобы дешифровать ваш текст введите "d": ')
+    return n
+
+def language():
+    l = input('Выберите язык на котором вам нужно зашифровать ваш текст. Напишите на английской раскладке "r" для русского, "e" для английского: ')
+    while l not in 're':
+        print('А может введете r или e?')
+        l = input('Выберите язык на котором вам нужно зашифровать ваш текст. Напишите на английской раскладке "r" для русского, "e" для английского: ')
+    return l
+
+def step():
+    k = input('Введите шаг, на который вам надо зашифровать или дешфровать. Введите число: ')
+    while k.isdigit() is False:
+        print('А может введете числло?')
+        k = input('Введите шаг, на который вам надо зашифровать или дешфровать. Введите число: ')
+    return int(k)
+
+def english():
+    ans = ''
+    if dest == 'e':
+        for el in text:
+            if el not in alphabet_e:
+                ans += el
+            else:
+                if el.isupper():
+                    ans += chr(ord("A") + (ord(el) - ord("A") + st) % 26)
+                else:
+                    ans += chr(ord("a") + (ord(el) - ord("a") + st) % 26)
+    else:
+        for el in text:
+            if el not in alphabet_e:
+                ans += el
+            else:
+                if el.isupper():
+                    ans += chr(ord("A") + (ord(el) - ord("A") + 26 - st) % 26)
+                else:
+                    ans += chr(ord("a") + (ord(el) - ord("a") + 26 - st) % 26)
+    return ans.lstrip()
+
+def russian():
+    ans = ''
+    if dest == 'e':
+        for el in text:
+            if el not in alphabet_r:
+                ans += el
+            else:
+                if el.isupper():
+                    ans += chr(ord("А") + (ord(el) - ord("А") + st) % 32)
+                else:
+                    ans += chr(ord("а") + (ord(el) - ord("а") + st) % 32)
+    else:
+        for el in text:
+            if el not in alphabet_r:
+                ans += el
+            else:
+                if el.isupper():
+                    ans += chr(ord("А") + (ord(el) - ord("А") + 32 - st) % 32)
+                else:
+                    ans += chr(ord("а") + (ord(el) - ord("а") + 32 - st) % 32)
+    return ans.lstrip()
+
+def program():
+    if lang == 'e':
+        print(english())
+    else:
+        print(russian())
+
+lang = language()
+text = input('Введите текст который хотите зашифровать или дешифровать на выбранном вами языке: ')
+dest = destination()
+st = step()
+program()
